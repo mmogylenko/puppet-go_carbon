@@ -12,6 +12,11 @@ class go_carbon::config inherits go_carbon
       owner => $go_carbon::user,
       group => $go_carbon::group;
 
+    $go_carbon::whisper_data_dir:
+      ensure => directory,
+      owner  => $go_carbon::user,
+      group  => $go_carbon::user;
+
     $go_carbon::whisper_schemas_file:
       content => template("${module_name}/storage-schemas.conf.erb");
 
