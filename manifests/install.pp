@@ -1,6 +1,9 @@
 # == Class: go_carbon::install
 # == Description: Creates the user/group, installs the package and creates the config dir.
 class go_carbon::install inherits go_carbon {
+
+  $download_deb_url = "https://github.com/lomik/go-carbon/releases/download/v${go_carbon::version}/go-carbon_${go_carbon::version}_amd64.deb"
+
   group { $go_carbon::group:
     ensure => $go_carbon::ensure,
   }
@@ -15,7 +18,7 @@ class go_carbon::install inherits go_carbon {
     'Debian': {
       if $go_carbon::download_package {
         exec { 'download package from release':
-          command => "/usr/bin/curl -L -s -o /tmp/go-carbon_${go_carbon::version}_amd64.deb ${go_carbon::download_deb_url}",
+          command => "/usr/bin/curl -L -s -o /tmp/go-carbon_${go_carbon::version}_amd64.deb ${download_deb_url}",
           cwd     => '/tmp',
           unless  => "/usr/bin/apt show go-carbon=${go_carbon::version}",
         } ~>
