@@ -91,10 +91,10 @@ define go_carbon::instance(
   $user       = $go_carbon::user
 
   file {
-    $whisper_data_dir:
-      ensure => directory,
-      owner  => $go_carbon::user,
-      group  => $go_carbon::user;
+    #$whisper_data_dir:
+    #  ensure => directory,
+    #  owner  => $go_carbon::user,
+    #  group  => $go_carbon::user;
 
     "${go_carbon::config_dir}/${service_name}.conf":
       ensure  => $ensure,
