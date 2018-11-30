@@ -1,8 +1,9 @@
 # == Resource: go_carbon::service
 # == Description: Installs an upstart / systemd service definition.
 define go_carbon::service(
-  $service_name = $title,
+  $service_name   = $title,
   $service_ensure = 'running',
+  $go_maxprocs    = $go_carbon::params::go_maxprocs,
   $service_enable = true)
 {
   case $::operatingsystemmajrelease {

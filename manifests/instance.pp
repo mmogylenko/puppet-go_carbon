@@ -100,7 +100,7 @@ define go_carbon::instance(
       ensure  => $ensure,
       content => template("${module_name}/go-carbon.conf.erb")
   } ->
-  go_carbon::service { $service_name: }
+  go_carbon::service { $service_name: go_maxprocs => $go_maxprocs }
 
   Class[$module_name] ->
   File["${go_carbon::config_dir}/${service_name}.conf"]
